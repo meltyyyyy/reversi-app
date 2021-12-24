@@ -52,7 +52,7 @@ public class ReversiServer implements Closeable {
             }
             final String stringRequest = new String(byteRequest, StandardCharsets.US_ASCII);
 
-            if(requests.contains(new String(byteRequest, StandardCharsets.US_ASCII))){
+            if(requests.contains(stringRequest)){
                 if(stringRequest.equals(requests.get(0))){
                     moveRequest(is, os, threadId);
                 }else if(stringRequest.equals(requests.get(1))){
@@ -74,7 +74,7 @@ public class ReversiServer implements Closeable {
         }
 
         private void quitRequest(long threadId) throws IOException {
-            System.out.format("[%04d] Recv: QUIT\n", threadId);
+            System.out.format("[%04d] Recv: QUIT\r\n", threadId);
             sock.close();
         }
 
