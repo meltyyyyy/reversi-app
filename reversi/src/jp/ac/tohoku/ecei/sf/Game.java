@@ -45,6 +45,8 @@ public class Game {
             q1 = q2;
             q2 = t;                
         }
+
+        AppClient.client.quit();
         return board;
     }
 }

@@ -38,9 +38,20 @@ public class AppClient implements Closeable {
         }
     }
 
+    public void quit(){
+        try {
+            final String quitRequest = "QUIT" + "\r\n";
+            os.write(quitRequest.getBytes(StandardCharsets.US_ASCII));
+            os.flush();
+            sock.close();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
     public Move recv() throws IOException {
-        final Move mv = new Move(is);
-        return mv;
+        return new Move(is);
     }
 
     @Override

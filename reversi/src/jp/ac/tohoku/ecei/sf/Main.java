@@ -11,7 +11,7 @@ public class Main {
         return ("Usage: java -jar jikkenC-reversi.jar (client HOST PORT|server PORT|single PORT)");
     }
 
-    private static void initService(String args[]) {
+    private static void initService(String[] args) {
         if ( args.length == 0 ) {
             System.out.println( usage() );
             return;
@@ -21,7 +21,7 @@ public class Main {
                 System.out.println( usage() );
                 return;
             }
-            String host = args[1];
+            final String host = args[1];
             int    port = Integer.parseInt( args[2] );
 
             startClient( host, port );
@@ -33,27 +33,11 @@ public class Main {
             }
             int    port = Integer.parseInt( args[1] );
 
-            if ( args[0].startsWith( "single" ) ) {
-                startServerSingle( port );
-                return;
-            }
-            else {
-                startServer( port );
-            }
+            startServer( port );
         }
     }
 
     private static void startServer( int port ) {
-        try {
-            ReversiServer.server = new ReversiServer( port );
-            ReversiServer.server.waitConnection();
-        }
-        catch ( Exception e ) {
-            System.out.println( "Starting server failed." );
-        }
-    }
-
-    private static void startServerSingle( int port ) {
         try {
             ReversiServer.server = new ReversiServer( port );
             ReversiServer.server.waitConnection();
@@ -73,7 +57,7 @@ public class Main {
         }
     }
 
-    private static void endService(String args[]) throws IOException {
+    private static void endService(String[] args) throws IOException {
         if ( args[0].startsWith( "c" ) ) {
             AppClient.client.close();
         }
