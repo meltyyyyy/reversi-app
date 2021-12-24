@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="jikkenC-echo" default="jar" basedir=".">
+
+  <property name="project"   value="jikkenC-echo"/>
+  <property name="jarfile"   value="echo.jar"/>
+  <property name="version"   value="0.1.0"/>
+  <property name="build.src" value="src"/> 
+  <property name="build.dst" value="target"/> 
+  <property name="build.doc" value="doc"/> 
+
+  <target name="jar" depends="compile">
+    <jar destfile="${jarfile}" 
+         basedir="${build.dst}">
+      <manifest>
+        <attribute name="Main-Class" value="jp.ac.tohoku.ecei.sf.App"/>
+      </manifest>
+    </jar>
+  </target>
+
+  <target name="compile">
+    <mkdir dir="${build.dst}" />
+    <javac srcdir="${build.src}"
+           destdir="${build.dst}"
+           encoding="utf-8"
+           includeAntRuntime="false"/>           
+  </target>
+
+  <target name="doc">
+    <javadoc 
+        packagenames="*"
+        sourcepath="${build.src}"
+        destdir="${build.doc}"/>
+  </target>
+
+  <target name="clean">
+    <delete dir="${build.dst}"/>
+    <delete dir="${build.doc}"/>
+    <delete file="${jarfile}"/>
+  </target>
+</project>
