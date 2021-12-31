@@ -88,6 +88,7 @@ public class ReversiServer implements Closeable {
             // 64byte読み込んでReversiBoardを生成
             final ReversiBoard board = new ReversiBoard(is);
 
+            // 空白を削除
             is.read(unused, 0,1);
 
             //  手番を取得
@@ -97,6 +98,7 @@ public class ReversiServer implements Closeable {
             is.read(unused, 0, 1);
             is.read(unused, 0, 1);
 
+            // 合法手の中から一手を選択
             List<Move> legalMoves = board.legalMoves(ReversiBoard.byteToColor(color[0]));
             Collections.shuffle(legalMoves);
             Move move = legalMoves.get(0);

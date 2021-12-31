@@ -22,9 +22,9 @@ jarファイル jikkenC-reversi.jar が生成される．
 使い方
 ------
 
-`java -jar jikkenC-reversi.jar`を実行すると，ランダムプレイヤーと対戦できる．
+`java -jar jikkenC-reversi.jar client localhost port`を実行すると，リモートのCPUと対戦できる．
 
-    $ java -jar jikkenC-reversi.jar 
+    $ java -jar jikkenC-reversi.jar client localhost 62006
 
 上記を入力すると，以下が表示される．`Black?>`はあなたが黒であることを表している．
 
@@ -65,6 +65,7 @@ jarファイル jikkenC-reversi.jar が生成される．
 
 これを繰り返し，ゲームが進んでいく．途中でやめるにはCTRL+Dを入力する．
 
-また，以下のように`r`を引数に渡して起動すると，ランダムプレイヤー同士の対戦ができる．
+`java -jar jikkenC-reversi.jar server port`を実行すると，リバーシサーバーを起動できる.
+このリバーシサーバーは複数クライアントとの通信が可能である.
 
-    $ java -jar jikkenC-reversi.jar r 
+    $ java -jar jikkenC-reversi.jar server port
